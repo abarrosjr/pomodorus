@@ -41,6 +41,27 @@ body {
     flex-direction: column;
 }
 
+.config-container {
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+    margin: 2rem;
+}
+
+.input_config input {
+    text-align: center;
+    border: 2px solid var(--cor-secundaria);
+    background-color: transparent;
+    color: var(--cor-secundaria);
+    width: 90px;
+    height: 40px;
+    border-radius: 20px;
+    margin: 0 15px;
+}
+
 #clock-time {
     font-size: 10rem;
 }
@@ -50,7 +71,7 @@ body {
     gap: 20px;
 }
 
-#btn {
+#btn,#btn_salvar {
     border: 2px solid var(--cor-secundaria);
     background-color: transparent;
     color: var(--cor-secundaria);
@@ -70,18 +91,26 @@ body {
     cursor: pointer;
 }
 
+#btn_config {
+    border: 2px solid var(--cor-secundaria);
+    background-color: transparent;
+    color: var(--cor-secundaria);
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
 #btn-start:active {
     background-color: var(--cor-secundaria);
     color: var(--cor-primaria);
     border: 4px solid #023c57;
 }
 
-#btn-start:hover {
-    background-color: var(--cor-secundaria);
-    color: var(--cor-primaria);
-}
-
-#btn:hover {
+#btn:hover,
+#btn_config:hover,
+#btn-start:hover,
+#btn_salvar:hover {
     background-color: var(--cor-secundaria);
     color: var(--cor-primaria);
 }
@@ -101,6 +130,7 @@ body {
     font-size: 1rem;
 }
 
+
 @media (max-width: 768px) {
     #clock-time {
         font-size: 6rem;
@@ -110,7 +140,8 @@ body {
         font-size: 1.5rem;
     }
 
-    #btn, #btn-start {
+    #btn,
+    #btn-start {
         width: 90px;
         height: 35px;
     }
