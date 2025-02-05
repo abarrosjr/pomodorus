@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,18 @@
     <link rel="stylesheet" href="src/styles/style.css">
     <link rel="stylesheet" href="src/styles/reset-css.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <meta name="description" content="Pomodorus é um site de gerenciamento de tempo baseado na técnica Pomodoro. Aumente sua produtividade com nosso timer simples e eficaz.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="description"
+        content="Pomodorus é um site de gerenciamento de tempo baseado na técnica Pomodoro. Aumente sua produtividade com nosso timer simples e eficaz.">
     <meta name="keywords" content="Pomodorus,Pomodoro, timer, produtividade, gerenciamento de tempo, aplicativo">
     <meta name="author" content="Pomodorus">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Pomodorus - Time">
-    <meta property="og:description" content="Pomodorus é um aplicativo de gerenciamento de tempo baseado na técnica Pomodoro. Aumente sua produtividade com nosso timer simples e eficaz.">
+    <meta property="og:description"
+        content="Pomodorus é um aplicativo de gerenciamento de tempo baseado na técnica Pomodoro. Aumente sua produtividade com nosso timer simples e eficaz.">
+    <script src="src/js/script.js" defer></script>
 </head>
 
 <body>
@@ -25,7 +31,6 @@
             <a href="https://github.com/devJunr/pomodorus"><i class="display-1 fa-brands fa-github"></i></a>
         </section>
     </header>
-
     <main>
         <div class="container">
             <section class="timer">
@@ -33,10 +38,28 @@
             </section>
             <section class="btn-acao" id="clock-action">
                 <button id="btn-start" onclick="">Start</button>
+
                 <button id="btn" onclick=""><i class="fa-solid fa-pause"></i></button>
-                <button id="btn" onclick=""><i class="fa-solid fa-gear"></i></button>
+                <button id="btn_config" onclick="configuracoes()"><i class="fa-solid fa-gear"></i></button>
             </section>
         </div>
+
+        <div class="config-container">
+            <h2>Configurações</h2>
+            <section class="configuracoes_opcoes">
+                <hr style="margin: 5% 0;">
+                <section class="input_config">
+                    <label for="minutos">Minutos de Trabalho: </label>
+                    <input id="minutos" type="number" min="15" max="99" placeholder="15"></input>
+                    <label for="minutos_pausa">Minutos de Descanso: </label>
+                    <input id="minutos_pausa" type="number" min="5" max="99" placeholder="5"></input>
+                </section>
+                <hr style="margin: 10% 0;">
+            </section>
+            <button id="btn_salvar" onclick="button_salvar()">Salvar</button>
+        </div>
+
     </main>
 </body>
+
 </html>
