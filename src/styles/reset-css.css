@@ -1,8 +1,40 @@
-*{
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-a{
-    color: var(--cor-secundaria);
+html, body {
+    height: 100%;
+    font-family: var(--fonte-primaria);
+}
+
+ul, ol {
+    list-style: none;
+    padding: 0; 
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer; 
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    line-height: 1.5;
 }
