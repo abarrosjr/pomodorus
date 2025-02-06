@@ -18,6 +18,7 @@ let minutos_pausa = 0;
 let timer_interval;
 let tempo_restante = 0;
 let timer_ativo = false;
+let modo_pausa = false;
 
 const formatTime = (minutes, seconds) => {
     return `
@@ -80,8 +81,18 @@ const start = () => {
 
     timer_interval = setInterval(() => {
         if (tempo_restante <= 0) {
-            clearInterval(timer_interval);
-            timer_ativo = false;
+            if (!modo_pausa) {
+                clearInterval(timer_interval);
+                timer_ativo = false;
+                modo_pausa = true;
+                tempo_restante = minutos_pausa * 60;
+                clock_timer.textContent = formatTime(minutos_pausa, 0);
+                start();
+            } else {
+                clearInterval(timer_interval);
+                timer_ativo = false;
+                modo_pausa = false;
+            }
             return;
         }
 
