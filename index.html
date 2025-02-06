@@ -1,89 +1,149 @@
 <!DOCTYPE html>
 
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pomodorus é um site de gerenciamento de tempo baseado na técnica Pomodoro. Aumente sua produtividade com nosso timer simples e eficaz.">
-    <meta name="keywords" content="Pomodorus,Pomodoro, timer, produtividade, gerenciamento de tempo, aplicativo">
-    <meta name="author" content="Pomodorus">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Pomodorus - Time">
-    <meta property="og:description" content="Pomodorus é um aplicativo de gerenciamento de tempo baseado na técnica Pomodoro. Aumente sua produtividade com nosso timer simples e eficaz.">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Pomodorus é um site de gerenciamento de tempo baseado na técnica Pomodoro. Aumente sua produtividade com nosso timer simples e eficaz."
+        />
+        <meta
+            name="keywords"
+            content="Pomodorus,Pomodoro, timer, produtividade, gerenciamento de tempo, aplicativo"
+        />
+        <meta name="author" content="Pomodorus" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Pomodorus - Time" />
+        <meta
+            property="og:description"
+            content="Pomodorus é um aplicativo de gerenciamento de tempo baseado na técnica Pomodoro. Aumente sua produtividade com nosso timer simples e eficaz."
+        />
 
-    <title>Pomodorus - Time</title>
+        <title>Pomodorus - Time</title>
 
-    <link rel="stylesheet" href="src/styles/style.css">
-    <link rel="stylesheet" href="src/styles/reset-css.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+        <link rel="stylesheet" href="src/styles/style.css" />
+        <link rel="stylesheet" href="src/styles/reset-css.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    </head>
 
-<body>
-    <header>
-        <section class="logo">
-            <a href="#">Pomodorus</a>
-        </section>
-
-        <section>
-            <a href="https://github.com/devJunr/pomodorus"><i class="display-1 fa-brands fa-github"></i></a>
-        </section>
-    </header>
-
-    <main>
-        <div class="container">
-            <section>
-                <div class="buttons">
-                    <button type="button" id="btn_pomodoro">Pomodoro</i></button>
-                    <button type="button" id="btn_long_pause">Pausa Longa</i></button>
-                    <button type="button" id="btn_short_pause">Pausa Curta</button>
-                </div>
+    <body>
+        <header>
+            <section class="logo">
+                <a href="#">Pomodorus</a>
             </section>
 
             <section>
-                <h2 id="clock-time">00:00</h2>
+                <a href="https://github.com/devJunr/pomodorus">
+                    <i class="display-1 fa-brands fa-github"> </i>
+                </a>
             </section>
+        </header>
 
-            <section>
-                <div class="buttons">
-                    <button type="button" id="btn_start">Start</button>
-                    <button type="button" id="btn_pause"><i class="fa-solid fa-pause"></i></button>
-                    <button type="button" id="btn_config"><i class="fa-solid fa-gear"></i></button>
-    
-                    <button type="button" id="btn_radio"><i class="fa-solid fa-radio"></i></i></button>
-                    <button type="button" id="btn_wind"><i class="fa-solid fa-wind"></i></button>
-                </div>
-            </section>
-        </div>
-
-        <div class="config_container">
-            <h2>Configurações</h2>
-
-            <section class="configuracoes_opcoes">
-                <hr style="margin: 5% 0;">
-
-                <section class="input_config">
-                    <label for="minutos">Minutos de Trabalho: </label>
-                    <input id="minutos" type="number" min="15" max="99" placeholder="15"></input>
-                    <label for="minutos_pausa">Minutos de Descanso: </label>
-                    <input id="minutos_pausa" type="number" min="5" max="99" placeholder="5"></input>
+        <main>
+            <div class="container">
+                <section>
+                    <div class="buttons">
+                        <button type="button" id="btn_pomodoro">
+                            Pomodoro
+                        </button>
+                        <button type="button" id="btn_long_pause">
+                            Pausa Longa
+                        </button>
+                        <button type="button" id="btn_short_pause">
+                            Pausa Curta
+                        </button>
+                    </div>
                 </section>
 
-                <hr style="margin: 10% 0;">
+                <section>
+                    <h2 id="clock-time">00:00</h2>
+                </section>
 
-                <button type="button" id="btn_save">Salvar</button>
-            </section>
-        </div>
-    </main>
+                <section>
+                    <div class="buttons">
+                        <button type="button" id="btn_start">Start</button>
+                        <button type="button" id="btn_pause">
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+                        <button type="button" id="btn_config">
+                            <i class="fa-solid fa-gear"></i>
+                        </button>
 
-    <footer>
-        <h4>REFERÊNCIAS</h4>
+                        <button type="button" id="btn_radio">
+                            <i class="fa-solid fa-radio"></i>
+                        </button>
+                        <button type="button" id="btn_wind">
+                            <i class="fa-solid fa-wind"></i>
+                        </button>
+                    </div>
+                </section>
+            </div>
 
-        <ul>
-            <li><a href="https://github.com/devjunr/pomodorus/graphs/contributors">Contribuidores do Projeto</a></li>
-            <li><a href="https://pt.wikipedia.org/wiki/T%C3%A9cnica_pomodoro">Técnica pomodoro - Wikipedia</a></li>
-        </ul>
-    </footer>
+            <div class="config_container">
+                <h2>Configurações</h2>
 
-    <script src="src/js/script.js" defer></script>
-</body>
+                <section class="configuracoes_opcoes">
+                    <hr style="margin: 5% 0" />
+
+                    <section class="input_config">
+                        <label for="minutos">Minutos de Trabalho: </label>
+                        <input
+                            id="minutos"
+                            type="number"
+                            min="15"
+                            max="99"
+                            placeholder="15"
+                        />
+                        <span class="error-message" id="error-minutos"></span>
+                        <label for="minutos_pausa">Minutos de Descanso: </label>
+                        <input
+                            id="minutos_pausa"
+                            type="number"
+                            min="5"
+                            max="99"
+                            placeholder="5"
+                        />
+                        <span
+                            class="error-message"
+                            id="error-minutos-pausa"
+                        ></span>
+                    </section>
+
+                    <hr style="margin: 10% 0" />
+
+                    <button type="button" id="btn_save">Salvar</button>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <h4>REFERÊNCIAS</h4>
+
+            <ul>
+                <li>
+                    <a
+                        href="https://github.com/devjunr/pomodorus/graphs/contributors"
+                    >
+                        Contribuidores do Projeto
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://pt.wikipedia.org/wiki/T%C3%A9cnica_pomodoro"
+                    >
+                        Técnica pomodoro - Wikipedia
+                    </a>
+                </li>
+            </ul>
+        </footer>
+
+        <script type="module" src="src/js/script.js"></script>
+    </body>
 </html>
