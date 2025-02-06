@@ -1,7 +1,7 @@
 :root {
     --cor-primaria: #f0f0f5;
     --cor-secundaria: #322153;
-    --fonte-primaria: "Roboto", Helvetica, Arial, sans-serif;
+    --font-primaria: "Roboto", Helvetica, Arial, sans-serif;
 }
 
 header {
@@ -21,7 +21,7 @@ header a {
     gap: 10px;
     font-size: 2rem;
     font-weight: 900;
-    font-family: var(--fonte-primaria);
+    font-family: var(--font-primaria);
 }
 
 body {
@@ -31,17 +31,16 @@ body {
     color: var(--cor-secundaria);
     height: 100vh;
     box-sizing: border-box;
-    font-family: var(--fonte-primaria);
+    font-family: var(--font-primaria);
 }
 
 .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    gap: 15px;
 }
 
-.config-container {
+.config_container {
     display: none;
     justify-content: center;
     flex-direction: column;
@@ -66,13 +65,32 @@ body {
     font-size: 10rem;
 }
 
-.btn-acao {
+.container section {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
-    padding: 5px 0;
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 15px;
+
+        button {
+            grid-column: span 2;
+            
+            &:nth-last-child(2):nth-child(3n + 1) {
+                grid-column-end: 4;
+            }
+        }
+    }
 }
 
-#btn,#btn_salvar {
+#btn_pomodoro,
+#btn_long_pause,
+#btn_short_pause,
+#btn_save
+{
     border: 2px solid var(--cor-secundaria);
     background-color: transparent;
     color: var(--cor-secundaria);
@@ -82,7 +100,7 @@ body {
     cursor: pointer;
 }
 
-#btn-start {
+#btn_start {
     border: none;
     background-color: var(--cor-secundaria);
     color: var(--cor-primaria);
@@ -92,7 +110,11 @@ body {
     cursor: pointer;
 }
 
-#btn_config {
+#btn_pause,
+#btn_config,
+#btn_radio,
+#btn_wind
+{
     border: 2px solid var(--cor-secundaria);
     background-color: transparent;
     color: var(--cor-secundaria);
@@ -102,19 +124,35 @@ body {
     cursor: pointer;
 }
 
-#btn-start:active {
+#btn_start:active {
     border: 5px solid #1a025254;
 }
 
 #btn:hover,
+#btn_pomodoro:hover,
+#btn_long_pause:hover,
+#btn_short_pause:hover,
 #btn_config:hover,
-#btn-start:hover,
-#btn_salvar:hover {
+#btn_start:hover,
+#btn_save:hover,
+#btn_pause:hover,
+#btn_radio:hover,
+#btn_wind:hover
+{
     background-color: var(--cor-secundaria);
     color: var(--cor-primaria);
 }
 
-#btn:active {
+#btn_pomodoro:active,
+#btn_long_pause:active,
+#btn_short_pause:active,
+#btn_start:active,
+#btn_config:active,
+#btn_save:active,
+#btn_pause:active,
+#btn_radio:active,
+#btn_wind:active
+{
     border: 2px solid var(--cor-primaria);
     background-color: var(--cor-secundaria);
     color: var(--cor-primaria);
@@ -129,7 +167,7 @@ body {
     font-size: 1rem;
 }
 
-footer{
+footer {
     display: flex;
     justify-content: center;
     align-items: center;
