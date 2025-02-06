@@ -50,6 +50,20 @@ body {
     margin: 2rem;
 }
 
+.input_config {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.input_config label {
+    font-size: 16px;
+    color: var(--cor-secundaria);
+}
+
 .input_config input {
     text-align: center;
     border: 2px solid var(--cor-secundaria);
@@ -59,6 +73,19 @@ body {
     height: 40px;
     border-radius: 20px;
     margin: 0 15px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    display: none;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.error-input {
+    border: 2px solid red !important;
+    outline: none;
 }
 
 #clock-time {
@@ -78,7 +105,7 @@ body {
 
         button {
             grid-column: span 2;
-            
+
             &:nth-last-child(2):nth-child(3n + 1) {
                 grid-column-end: 4;
             }
@@ -89,8 +116,7 @@ body {
 #btn_pomodoro,
 #btn_long_pause,
 #btn_short_pause,
-#btn_save
-{
+#btn_save {
     border: 2px solid var(--cor-secundaria);
     background-color: transparent;
     color: var(--cor-secundaria);
@@ -113,8 +139,7 @@ body {
 #btn_pause,
 #btn_config,
 #btn_radio,
-#btn_wind
-{
+#btn_wind {
     border: 2px solid var(--cor-secundaria);
     background-color: transparent;
     color: var(--cor-secundaria);
@@ -137,8 +162,7 @@ body {
 #btn_save:hover,
 #btn_pause:hover,
 #btn_radio:hover,
-#btn_wind:hover
-{
+#btn_wind:hover {
     background-color: var(--cor-secundaria);
     color: var(--cor-primaria);
 }
@@ -151,8 +175,7 @@ body {
 #btn_save:active,
 #btn_pause:active,
 #btn_radio:active,
-#btn_wind:active
-{
+#btn_wind:active {
     border: 2px solid var(--cor-primaria);
     background-color: var(--cor-secundaria);
     color: var(--cor-primaria);
@@ -180,13 +203,17 @@ footer {
     margin: 20px 0;
 }
 
-@media (max-width: 630px){
-    .input_config{
+@media (max-width: 630px) {
+    .input_config {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 20px;
+    }
+
+    .error-message {
+        margin-top: -15px;
     }
 }
 
@@ -196,7 +223,7 @@ footer {
         justify-content: center;
         height: 60vh;
     }
-    
+
     .container {
         display: flex;
         flex-direction: column; /* Mantém os elementos na coluna */
@@ -213,6 +240,18 @@ footer {
 
     .display-1 {
         font-size: 2rem;
+    }
+
+    .input_config {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .error-message {
+        margin-top: -15px;
     }
 }
 
