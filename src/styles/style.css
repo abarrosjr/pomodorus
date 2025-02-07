@@ -1,6 +1,7 @@
 :root {
     --cor-primaria: #f0f0f5;
     --cor-secundaria: #322153;
+    --cor-secundaria-hover: #271a41;
     --yellow-background-fundo: #fae9b1;
     --yellow-background-icon: #f2c03a;
     --blue-background-fundo: #092e40;
@@ -11,6 +12,7 @@
 .dark-mode:root {
     --cor-primaria: #322153;
     --cor-secundaria: #f0f0f5;
+    --cor-secundaria-hover: #271a41;
 }
 
 header {
@@ -136,8 +138,8 @@ body {
 }
 
 #btn_start {
-    border: none;
     background-color: var(--cor-secundaria);
+    border: none;
     color: var(--cor-primaria);
     width: 100px;
     height: 40px;
@@ -149,9 +151,8 @@ body {
 #btn_config,
 #btn_radio,
 #btn_wind {
-    border: 2px solid var(--cor-secundaria);
-    background-color: transparent;
-    color: var(--cor-secundaria);
+    background-color: var(--cor-secundaria);
+    color: var(--cor-primaria);
     width: 100px;
     height: 40px;
     border-radius: 20px;
@@ -172,8 +173,9 @@ body {
 #btn_pause:hover,
 #btn_radio:hover,
 #btn_wind:hover {
-    background-color: var(--cor-secundaria);
-    color: var(--cor-primaria);
+    border: 2px solid var(--cor-secundaria);
+    background-color: var(--cor-secundaria-hover);
+    color: #f0f0f5;
 }
 
 #btn_pomodoro:active,
