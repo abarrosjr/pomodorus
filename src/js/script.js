@@ -129,3 +129,7 @@ button_config.addEventListener("click", toggleConfigPanel);
 button_save.addEventListener("click", validateAndSaveConfig);
 btn_pause.addEventListener("click", pauseTimer);
 btn_start.addEventListener("click", startTimer);
+
+
+import StyleMode from "./modules/StyleMode.js";
+StyleMode()
