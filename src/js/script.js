@@ -23,6 +23,7 @@ const formatTime = (minutes, seconds) => {
 };
 
 const toggleConfigPanel = () => {
+    clickSound()
     config_container.style.display =
         config_container.style.display === "grid" ? "none" : "grid";
     container.style.display =
@@ -88,9 +89,10 @@ const resetErrorsConfig = () => {
 
 const startTimer = () => {
     if (timer_ativo) return;
-
+    
     timer_ativo = true;
     timer_interval = setInterval(updateTimer, 1000);
+    clickSound()
 };
 
 const updateTimer = () => {
@@ -123,6 +125,7 @@ const handleTimerEnd = () => {
 const pauseTimer = () => {
     clearInterval(timer_interval);
     timer_ativo = false;
+    clickSound()
 };
 
 button_config.addEventListener("click", toggleConfigPanel);
@@ -133,3 +136,5 @@ btn_start.addEventListener("click", startTimer);
 
 import StyleMode from "./modules/StyleMode.js";
 StyleMode()
+
+import {clickSound} from "./modules/SoundClick.js";
