@@ -72,6 +72,10 @@
                 </section>
 
                 <section>
+                    <p>Insira o tempo de trabalho e pausa nas configurações</p>
+                </section>
+
+                <section>
                     <div class="buttons">
                         <button type="button" id="btn_start">Start</button>
                         <button type="button" id="btn_pause">
@@ -89,6 +93,7 @@
                         </button>
                     </div>
                 </section>
+                
             </div>
 
             <div class="config_container">
@@ -100,6 +105,7 @@
                     <section class="input_config">
                         <label for="minutos">Minutos de Trabalho: </label>
                         <input
+                            value="15"
                             id="minutos"
                             type="number"
                             min="15"
@@ -109,6 +115,7 @@
                         <span class="error-message" id="error-minutos"></span>
                         <label for="minutos_pausa">Minutos de Descanso: </label>
                         <input
+                            value="5"
                             id="minutos_pausa"
                             type="number"
                             min="5"
