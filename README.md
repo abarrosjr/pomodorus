@@ -56,6 +56,14 @@ Envie uma PR com suas modificações
 
 Este projeto está sob a licença MIT License - Veja o arquivo [LICENSE.md](https://github.com/devJunr/pomodorus/blob/main/LICENSE) para detalhes.
 
+## 🔗 Créditos
+###### Assets de Áudios
+- [Clique de Botão - 494493__sheyvan__button-clicking-7-single.mp3](https://freesound.org/people/Sheyvan/sounds/494493/)
+
+- [Som de ruído branco - PinkNoise.mp3](https://mc2method.org/white-noise/)
+
+- [Som de chuva - 786144__paf60__heavy-rain.wav](https://freesound.org/people/paf60/sounds/786144/)
+
 ## 🎁 Expressões de gratidão
 Agradeço a todos que estão colaborando com o projeto, e enviando suas PR.
 
