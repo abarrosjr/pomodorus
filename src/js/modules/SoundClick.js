@@ -19,7 +19,7 @@ function PlayClick(){
     const sound = file => {
         return new Audio(file);
     }
-    const radio = sound('../../src/audio/494493__sheyvan__button-clicking-7-single.mp3');
+    const radio = sound('src/audio/494493__sheyvan__button-clicking-7-single.mp3');
     radio.volume = 0.8;
     radio.loop = false;
     radio.play();
@@ -29,7 +29,7 @@ function WhiteNoiseSound(status){
     const sound = file => {
         return new Audio(file);
     }
-    radio = sound('../../src/audio/PinkNoise.mp3');
+    radio = sound('src/audio/PinkNoise.mp3');
     radio.volume = 1;
     radio.loop = true;
     radio.play();
