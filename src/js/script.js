@@ -4,6 +4,8 @@ const config_container = main.querySelector(".config_container");
 const clock_timer = main.querySelector("#clock-time");
 const btn_start = main.querySelector("#btn_start");
 const btn_pause = main.querySelector("#btn_pause");
+const btn_radio = main.querySelector("#btn_radio");
+const btn_pause_radio = main.querySelector("#btn_pause_radio");
 
 const input_minutos_trabalho = config_container.querySelector("#minutos");
 const input_minutos_pausa = config_container.querySelector("#minutos_pausa");
@@ -132,9 +134,27 @@ button_config.addEventListener("click", toggleConfigPanel);
 button_save.addEventListener("click", validateAndSaveConfig);
 btn_pause.addEventListener("click", pauseTimer);
 btn_start.addEventListener("click", startTimer);
+btn_radio.addEventListener('click', radio);
+btn_pause_radio.addEventListener('click', pause)
 
+function radio(){
+    btn_radio.disabled = true;
+    btn_pause_radio.disabled = false;
+    btn_radio.style.color = 'var(--active-function-color)';
+    PlayWhiteNoise();
+}
+
+function pause(){
+    btn_radio.disabled = false;
+    btn_pause_radio.disabled = true;
+    btn_radio.style.color = 'var(--cor-primaria)';
+
+    WhiteNoisePause();
+}
 
 import StyleMode from "./modules/StyleMode.js";
 StyleMode()
 
 import {clickSound} from "./modules/SoundClick.js";
+import {PlayWhiteNoise} from "./modules/SoundClick.js";
+import {WhiteNoisePause} from "./modules/SoundClick.js";
