@@ -7,6 +7,7 @@
     --blue-background-fundo: #092e40;
     --blue-background-icon: #24b0ec;
     --font-primaria: "Roboto", Helvetica, Arial, sans-serif;
+    --active-function-color: #2ecc71;
 }
 
 .dark-mode:root {
@@ -150,7 +151,7 @@ body {
 #btn_pause,
 #btn_config,
 #btn_radio,
-#btn_wind {
+#btn_pause_radio {
     background-color: var(--cor-secundaria);
     color: var(--cor-primaria);
     width: 100px;
@@ -172,7 +173,7 @@ body {
 #btn_save:hover,
 #btn_pause:hover,
 #btn_radio:hover,
-#btn_wind:hover {
+#btn_pause_radio:hover {
     border: 2px solid var(--cor-secundaria);
     background-color: var(--cor-secundaria-hover);
     color: #f0f0f5;
@@ -186,7 +187,7 @@ body {
 #btn_save:active,
 #btn_pause:active,
 #btn_radio:active,
-#btn_wind:active {
+#btn_pause_radio:active {
     border: 2px solid var(--cor-primaria);
     background-color: var(--cor-secundaria);
     color: var(--cor-primaria);

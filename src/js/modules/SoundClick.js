@@ -1,9 +1,18 @@
+let radio;
+export function WhiteNoisePause(){
+    NoisePause();
+}
+
 export function clickSound(){
     PlayClick();
 }
 
-export function PlayWhiteNoise(){
-    WhiteNoiseSound();
+export function PlayWhiteNoise(status){
+    WhiteNoiseSound(status);
+}
+
+export function PauseWhiteNoise(){
+    WhiteNoiseSoundPause();
 }
 
 function PlayClick(){
@@ -16,12 +25,16 @@ function PlayClick(){
     radio.play();
 }
 
-function WhiteNoiseSound(){
+function WhiteNoiseSound(status){
     const sound = file => {
         return new Audio(file);
     }
-    const radio = sound('../../src/audio/PinkNoise.mp3');
-    radio.volume = 0.8;
+    radio = sound('../../src/audio/PinkNoise.mp3');
+    radio.volume = 1;
     radio.loop = true;
     radio.play();
+}
+
+function NoisePause(){
+    radio.pause();
 }
