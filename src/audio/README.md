@@ -7,11 +7,9 @@ Em caso de modificação do nome da faixa, altere o mesmo nos códigos do projet
 
 ## 🔗 Créditos
 ###### Assets de Áudios
-- [Clique de Botão - 494493__sheyvan__button-clicking-7-single.mp3](https://freesound.org/people/Sheyvan/sounds/494493/)
+- [Clique de Botão - clique_efeito.wav](https://mixkit.co/free-sound-effects/click/)
 
-- [Som de ruído branco - PinkNoise.mp3](https://mc2method.org/white-noise/)
-
-- [Som de chuva - 786144__paf60__heavy-rain.wav](https://freesound.org/people/paf60/sounds/786144/)
+- [Som de ruído marrom - Deep Sleep Brown Noise - Bits & Noise](https://open.spotify.com/intl-pt/track/0B97qFqGUnLvV2tXZpXfxf?si=1e3837d3fd93454f)
 
 ---
 ## 📄 Licença
