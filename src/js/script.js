@@ -161,6 +161,7 @@ function radio() {
   btn_radio.disabled = true;
   btn_pause_radio.disabled = false;
   btn_radio.style.color = "var(--active-function-color)";
+  clickSound();
   PlayWhiteNoise();
 }
 
@@ -169,7 +170,7 @@ function pause() {
   btn_radio.disabled = false;
   btn_pause_radio.disabled = true;
   btn_radio.style.color = "var(--cor-primaria)";
-
+  clickSound();
   WhiteNoisePause();
 }
 
