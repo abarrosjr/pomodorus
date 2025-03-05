@@ -42,7 +42,7 @@ const validateAndSaveConfig = () => {
 
   resetErrorsConfig();
 
-  if (isNaN(minutos_trabalho) || minutos_trabalho < 15) {
+  if (isNaN(minutos_trabalho) || minutos_trabalho < 1) {
     displayError(
       error_minutos,
       "Mínimo de 15 minutos.",
@@ -135,7 +135,8 @@ const handleTimerEnd = () => {
     modo_pausa = true;
     tempo_restante = minutos_pausa * 60;
     clock_timer.textContent = formatTime(minutos_pausa, 0);
-    startTimer();
+    PauseTimeSound();
+    pauseTimer();
   } else {
     clearInterval(timer_interval);
     timer_ativo = false;
@@ -180,3 +181,4 @@ StyleMode();
 import { clickSound } from "./modules/SoundClick.js";
 import { PlayWhiteNoise } from "./modules/SoundClick.js";
 import { WhiteNoisePause } from "./modules/SoundClick.js";
+import { PauseTimeSound } from "./modules/SoundClick.js";

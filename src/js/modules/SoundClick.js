@@ -18,6 +18,10 @@ export function WhiteNoisePause() {
   playAudio("pause");
 }
 
+export function PauseTimeSound() {
+  playAudio("play", "const", "src/audio/efeito-pausa-som.mp3", false, 1);
+}
+
 function playAudio(status, type, src, loop, volume) {
   if (status == "play") {
     if (type == "const") {
