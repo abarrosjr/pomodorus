@@ -157,6 +157,7 @@ btn_radio.addEventListener("click", radio);
 btn_pause_radio.addEventListener("click", pause);
 
 function radio() {
+  clickSound();
   btn_radio.disabled = true;
   btn_pause_radio.disabled = false;
   btn_radio.style.color = "var(--active-function-color)";
@@ -164,6 +165,7 @@ function radio() {
 }
 
 function pause() {
+  clickSound();
   btn_radio.disabled = false;
   btn_pause_radio.disabled = true;
   btn_radio.style.color = "var(--cor-primaria)";
