@@ -1,34 +1,43 @@
 let radio;
-export function WhiteNoisePause() {
-  NoisePause();
-}
 
 export function clickSound() {
   PlayClick();
 }
 
-export function PlayWhiteNoise(status) {
-  WhiteNoiseSound(status);
+export function PlayWhiteNoise() {
+  WhiteNoiseSound();
+}
+
+export function WhiteNoisePause() {
+  NoisePause();
 }
 
 function PlayClick() {
-  const sound = (file) => {
-    return new Audio(file);
-  };
-  const radio = sound("src/audio/clique_efeito.wav");
-  radio.volume = 0.8;
-  radio.loop = false;
-  radio.play();
+  playAudio("const", "src/audio/clique_efeito.wav", false, 1);
 }
 
-function WhiteNoiseSound(status) {
-  const sound = (file) => {
-    return new Audio(file);
-  };
-  radio = sound("src/audio/Deep-Sleep-Brown-Noise.mp3");
-  radio.volume = 1;
-  radio.loop = true;
-  radio.play();
+function WhiteNoiseSound() {
+  playAudio("no-const", "src/audio/Deep-Sleep-Brown-Noise.mp3", true, 1);
+}
+
+function playAudio(type, src, loop, volume) {
+  if (type == "const") {
+    const sound = (file) => {
+      return new Audio(file);
+    };
+    const radio = sound(src);
+    radio.volume = volume;
+    radio.loop = loop;
+    radio.play();
+  } else if (type == "no-const") {
+    const sound = (file) => {
+      return new Audio(file);
+    };
+    radio = sound(src);
+    radio.volume = volume;
+    radio.loop = loop;
+    radio.play();
+  }
 }
 
 function NoisePause() {
