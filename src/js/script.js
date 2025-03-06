@@ -24,7 +24,7 @@ let modo_pausa = false;
 let timer_interval;
 
 document.addEventListener("DOMContentLoaded", function () {
-  timerPadrao("pomodoro");
+  defaultTimer("Pomodoro");
 });
 
 const formatTime = (minutes, seconds) => {
@@ -40,14 +40,14 @@ const toggleConfigPanel = () => {
     config_container.style.display === "grid" ? "none" : "flex";
 };
 
-function timerPadrao(mode) {
-  if (mode == "pomodoro") {
+function defaultTimer(mode) {
+  if (mode == "Pomodoro") {
     minutos_trabalho = 15;
     minutos_pausa = 5;
-  } else if (mode == "PausaCurta") {
+  } else if (mode == "ShortPause") {
     minutos_trabalho = 30;
     minutos_pausa = 10;
-  } else if (mode == "PausaLonga") {
+  } else if (mode == "LongPause") {
     minutos_trabalho = 60;
     minutos_pausa = 20;
   }
@@ -179,6 +179,15 @@ btn_pause.addEventListener("click", pauseTimer);
 btn_start.addEventListener("click", startTimer);
 btn_radio.addEventListener("click", radio);
 btn_pause_radio.addEventListener("click", pause);
+btn_pomodoro.addEventListener("click", function () {
+  defaultTimer("Pomodoro");
+});
+btn_long_pause.addEventListener("click", function () {
+  defaultTimer("LongPause");
+});
+btn_short_pause.addEventListener("click", function () {
+  defaultTimer("ShortPause");
+});
 
 function radio() {
   clickSound();
