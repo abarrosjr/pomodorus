@@ -42,7 +42,7 @@ const validateAndSaveConfig = () => {
 
   resetErrorsConfig();
 
-  if (isNaN(minutos_trabalho) || minutos_trabalho < 1) {
+  if (isNaN(minutos_trabalho) || minutos_trabalho < 15) {
     displayError(
       error_minutos,
       "Mínimo de 15 minutos.",
@@ -135,12 +135,13 @@ const handleTimerEnd = () => {
     modo_pausa = true;
     tempo_restante = minutos_pausa * 60;
     clock_timer.textContent = formatTime(minutos_pausa, 0);
+    console.log("teste 1");
     PauseTimeSound();
-    pauseTimer();
   } else {
     clearInterval(timer_interval);
     timer_ativo = false;
     modo_pausa = false;
+    pauseTimer();
   }
 };
 
