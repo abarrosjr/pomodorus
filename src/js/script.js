@@ -135,7 +135,6 @@ const handleTimerEnd = () => {
     modo_pausa = true;
     tempo_restante = minutos_pausa * 60;
     clock_timer.textContent = formatTime(minutos_pausa, 0);
-    console.log("teste 1");
     PauseTimeSound();
   } else {
     clearInterval(timer_interval);
