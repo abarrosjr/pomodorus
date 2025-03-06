@@ -7,6 +7,10 @@ const btn_pause = main.querySelector("#btn_pause");
 const btn_radio = main.querySelector("#btn_radio");
 const btn_pause_radio = main.querySelector("#btn_pause_radio");
 
+const btn_pomodoro = main.querySelector("#btn_pomodoro");
+const btn_long_pause = main.querySelector("#btn_long_pause");
+const btn_short_pause = main.querySelector("#btn_short_pause");
+
 const input_minutos_trabalho = config_container.querySelector("#minutos");
 const input_minutos_pausa = config_container.querySelector("#minutos_pausa");
 const button_config = container.querySelector("#btn_config");
@@ -18,6 +22,10 @@ let tempo_restante = 0;
 let timer_ativo = false;
 let modo_pausa = false;
 let timer_interval;
+
+document.addEventListener("DOMContentLoaded", function () {
+  timerPadrao("pomodoro");
+});
 
 const formatTime = (minutes, seconds) => {
   return `
@@ -31,6 +39,21 @@ const toggleConfigPanel = () => {
   container.style.display =
     config_container.style.display === "grid" ? "none" : "flex";
 };
+
+function timerPadrao(mode) {
+  if (mode == "pomodoro") {
+    minutos_trabalho = 15;
+    minutos_pausa = 5;
+  } else if (mode == "PausaCurta") {
+    minutos_trabalho = 30;
+    minutos_pausa = 10;
+  } else if (mode == "PausaLonga") {
+    minutos_trabalho = 60;
+    minutos_pausa = 20;
+  }
+  tempo_restante = minutos_trabalho * 60;
+  clock_timer.textContent = formatTime(minutos_trabalho, 0);
+}
 
 const validateAndSaveConfig = () => {
   minutos_trabalho = parseInt(input_minutos_trabalho.value);
