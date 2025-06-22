@@ -4,7 +4,7 @@ import {
   playWhiteNoise,
   whiteNoisePause,
   pauseTimeSound
-} from './modules/soundClick.js';
+} from './modules/SoundClick.js';
 import {
   btn_start,
   btn_pause,
@@ -23,7 +23,7 @@ import {
   button_config,
   clock_timer
 } from './modules/selectors.js';
-import styleMode from './modules/styleMode.js';
+import styleMode from './modules/StyleMode.js';
 
 styleMode();
 
