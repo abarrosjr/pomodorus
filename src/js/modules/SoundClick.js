@@ -1,47 +1,28 @@
-let radio;
+import variables from './variables.js';
 
-export function clickSound() {
-  playAudio("play", "const", "src/audio/clique_efeito.wav", false, 1);
+const sound = (file, loop, volume) => {
+  variables.audio = new Audio(`src/audio/${file}`);
+  variables.audio.volume = volume;
+  variables.audio.loop = loop;
+  variables.audio.load();
+
+  return variables.audio;
 }
 
-export function PlayWhiteNoise() {
-  playAudio(
-    "play",
-    "no-const",
-    "src/audio/Deep-Sleep-Brown-Noise.mp3",
-    true,
-    1,
-  );
+export const clickSound = () => {
+  return sound('clique_efeito.wav', false, 1);
 }
 
-export function WhiteNoisePause() {
-  playAudio("pause");
+export const playWhiteNoise = () => {
+  variables.windSound = sound('Deep-Sleep-Brown-Noise.mp3', true, 1);
+
+  return variables.windSound;
 }
 
-export function PauseTimeSound() {
-  playAudio("play", "const", "src/audio/efeito-pausa-som.mp3", false, 1);
+export const whiteNoisePause = () => {
+  return variables.windSound;
 }
 
-function playAudio(status, type, src, loop, volume) {
-  if (status == "play") {
-    if (type == "const") {
-      const sound = (file) => {
-        return new Audio(file);
-      };
-      const radio = sound(src);
-      radio.volume = volume;
-      radio.loop = loop;
-      radio.play();
-    } else if (type == "no-const") {
-      const sound = (file) => {
-        return new Audio(file);
-      };
-      radio = sound(src);
-      radio.volume = volume;
-      radio.loop = loop;
-      radio.play();
-    }
-  } else if (status == "pause") {
-    radio.pause();
-  }
+export const pauseTimeSound = () => {
+  return sound('efeito-pausa-som.mp3', false, 1);
 }

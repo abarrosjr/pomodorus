@@ -1,15 +1,17 @@
-export default function StyleMode() {}
+import { html, buttonStyle } from './selectors.js';
 
-const buttonStyle = document.querySelector(".button-style-mode");
-const html = document.querySelector('html');
-buttonStyle.addEventListener("click", handleClick);
+const handleClick = () => {
+    const iconSun = buttonStyle.querySelector('.sun');
+    const iconMoon = buttonStyle.querySelector('.moon');
 
-function handleClick() {
-    const classActive = "active";
-    const iconSun = buttonStyle.querySelector(".sun");
-    const iconMoon = buttonStyle.querySelector(".moon");
-    buttonStyle.classList.toggle(classActive);
-    iconSun.classList.toggle(classActive)
-    iconMoon.classList.toggle(classActive);
+    iconSun.classList.toggle('active')
+    iconMoon.classList.toggle('active')
+
+    buttonStyle.classList.toggle('active')
+
     html.classList.toggle('dark-mode');
 }
+
+buttonStyle.addEventListener('click', handleClick);
+
+export default function styleMode() {}

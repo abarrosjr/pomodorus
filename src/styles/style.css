@@ -204,15 +204,16 @@ body {
 
 footer {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     flex-direction: column;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 20px 0;
+    gap: 10px;
+
+    text-align: center;
+    
+    margin-bottom: 5px;
+
+    li {
+        margin-bottom: 5px;
+    }
 }
 
 @media (max-width: 630px) {
@@ -240,6 +241,7 @@ footer {
         display: flex;
         flex-direction: column; /* Mantém os elementos na coluna */
         align-items: center;
+        justify-content: space-between;
     }
 
     #clock-time {
