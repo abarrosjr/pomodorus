@@ -1,216 +1,214 @@
-const main = document.querySelector("main");
-const container = main.querySelector(".container");
-const config_container = main.querySelector(".config_container");
-const clock_timer = main.querySelector("#clock-time");
-const btn_start = main.querySelector("#btn_start");
-const btn_pause = main.querySelector("#btn_pause");
-const btn_radio = main.querySelector("#btn_radio");
-const btn_pause_radio = main.querySelector("#btn_pause_radio");
+import variables from './modules/variables.js';
+import {
+  clickSound,
+  playWhiteNoise,
+  whiteNoisePause,
+  pauseTimeSound
+} from './modules/soundClick.js';
+import {
+  btn_start,
+  btn_pause,
+  btn_radio,
+  btn_pause_radio,
+  btn_pomodoro,
+  btn_long_pause,
+  btn_short_pause,
+  config_container,
+  input_minutos_trabalho,
+  input_minutos_pausa,
+  button_save,
+  error_minutos,
+  error_minutos_pausa,
+  container,
+  button_config,
+  clock_timer
+} from './modules/selectors.js';
+import styleMode from './modules/styleMode.js';
 
-const btn_pomodoro = main.querySelector("#btn_pomodoro");
-const btn_long_pause = main.querySelector("#btn_long_pause");
-const btn_short_pause = main.querySelector("#btn_short_pause");
+styleMode();
 
-const input_minutos_trabalho = config_container.querySelector("#minutos");
-const input_minutos_pausa = config_container.querySelector("#minutos_pausa");
-const button_config = container.querySelector("#btn_config");
-const button_save = config_container.querySelector("#btn_save");
+document.addEventListener('DOMContentLoaded', () => defaultTimer("Pomodoro"));
 
-let minutos_trabalho = 0;
-let minutos_pausa = 0;
-let tempo_restante = 0;
-let timer_ativo = false;
-let modo_pausa = false;
-let timer_interval;
-
-document.addEventListener("DOMContentLoaded", function () {
-  defaultTimer("Pomodoro");
-});
+const modes = {
+  'Pomodoro': {
+    trabalho: 15,
+    pausa: 5
+  },
+  'ShortPause': {
+    trabalho: 30,
+    pausa: 10
+  },
+  'LongPause': {
+    trabalho: 60,
+    pausa: 20
+  }
+}
 
 const formatTime = (minutes, seconds) => {
-  return `
-    ${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-};
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
 
 const toggleConfigPanel = () => {
-  clickSound();
-  config_container.style.display =
-    config_container.style.display === "grid" ? "none" : "grid";
-  container.style.display =
-    config_container.style.display === "grid" ? "none" : "flex";
-};
+  clickSound().play();
 
-function defaultTimer(mode) {
-  if (mode == "Pomodoro") {
-    minutos_trabalho = 15;
-    minutos_pausa = 5;
-  } else if (mode == "ShortPause") {
-    minutos_trabalho = 30;
-    minutos_pausa = 10;
-  } else if (mode == "LongPause") {
-    minutos_trabalho = 60;
-    minutos_pausa = 20;
-  }
-  tempo_restante = minutos_trabalho * 60;
-  clock_timer.textContent = formatTime(minutos_trabalho, 0);
+  config_container.style.display = config_container.style.display === 'grid' ? 'none' : 'grid';
+  container.style.display = config_container.style.display === 'grid' ? 'none' : 'flex';
+}
+
+const defaultTimer = mode => {
+  variables.minutos_trabalho = modes[mode].trabalho;
+  variables.minutos_pausa = modes[mode].pausa;
+
+  variables.tempo_restante = variables.minutos_trabalho * 60;
+
+  clock_timer.textContent = formatTime(variables.minutos_trabalho, 0);
 }
 
 const validateAndSaveConfig = () => {
-  minutos_trabalho = parseInt(input_minutos_trabalho.value);
-  minutos_pausa = parseInt(input_minutos_pausa.value);
+  variables.minutos_trabalho = parseInt(input_minutos_trabalho.value);
+  variables.minutos_pausa = parseInt(input_minutos_pausa.value);
 
-  const error_minutos = document.getElementById("error-minutos");
-  const error_minutos_pausa = document.getElementById("error-minutos-pausa");
   let has_error = false;
 
   resetErrorsConfig();
 
-  if (isNaN(minutos_trabalho) || minutos_trabalho < 15) {
-    displayError(
-      error_minutos,
-      "Mínimo de 15 minutos.",
-      input_minutos_trabalho,
-      "error-input",
-    );
-    has_error = true;
-  }
-  if (isNaN(minutos_pausa) || minutos_pausa < 5) {
-    displayError(
-      error_minutos_pausa,
-      "Mínimo de 5 minutos.",
-      input_minutos_pausa,
-      "error-input",
-    );
+  if (isNaN(variables.minutos_trabalho) || variables.minutos_trabalho < 15) {
+    displayError(error_minutos, "Mínimo de 15 minutos.", input_minutos_trabalho, "error-input");
+
     has_error = true;
   }
 
-  if (isNaN(minutos_trabalho) || minutos_trabalho > 60) {
-    displayError(
-      error_minutos,
-      "Não é recomendado mais de 60 minutos de foco.",
-      input_minutos_trabalho,
-      "error-input",
-    );
+  if (isNaN(variables.minutos_pausa) || variables.minutos_pausa < 5) {
+    displayError(error_minutos_pausa, "Mínimo de 5 minutos.", input_minutos_pausa, "error-input");
+
     has_error = true;
   }
-  if (isNaN(minutos_pausa) || minutos_pausa > 60) {
-    displayError(
-      error_minutos_pausa,
-      "Não é recomendado mais de 60 minutos de pausa",
-      input_minutos_pausa,
-      "error-input",
-    );
+
+  if (isNaN(variables.minutos_trabalho) || variables.minutos_trabalho > 60) {
+    displayError(error_minutos, "Não é recomendado mais de 60 minutos de foco.", input_minutos_trabalho, "error-input");
+
+    has_error = true;
+  }
+
+  if (isNaN(variables.minutos_pausa) || variables.minutos_pausa > 60) {
+    displayError(error_minutos_pausa, "Não é recomendado mais de 60 minutos de pausa", input_minutos_pausa, "error-input");
+
     has_error = true;
   }
 
   if (has_error) return;
 
-  tempo_restante = minutos_trabalho * 60;
-  clock_timer.textContent = formatTime(minutos_trabalho, 0);
+  variables.tempo_restante = variables.minutos_trabalho * 60;
+
+  clock_timer.textContent = formatTime(variables.minutos_trabalho, 0);
 
   toggleConfigPanel();
-};
+}
 
 const displayError = (element, message, input, name) => {
   element.textContent = message;
   element.style.display = "block";
+
   input.classList.add(name);
-};
+}
 
 const resetErrorsConfig = () => {
-  const error_minutos = document.getElementById("error-minutos");
-  const error_minutos_pausa = document.getElementById("error-minutos-pausa");
-
   error_minutos.textContent = "";
   error_minutos.style.display = "none";
 
   error_minutos_pausa.textContent = "";
   error_minutos_pausa.style.display = "none";
 
-  input_minutos_trabalho.classList.remove("error-input");
-  input_minutos_pausa.classList.remove("error-input");
-};
+  input_minutos_trabalho.classList.remove('error-input');
+  input_minutos_pausa.classList.remove('error-input');
+}
 
 const startTimer = () => {
-  if (timer_ativo) return;
+  if (variables.timer_ativo) return;
 
-  timer_ativo = true;
-  timer_interval = setInterval(updateTimer, 1000);
-  clickSound();
-};
+  variables.timer_ativo = true;
+  variables.timer_interval = setInterval(updateTimer, 1000);
+
+  clickSound().play();
+}
 
 const updateTimer = () => {
-  if (tempo_restante <= 0) {
+  if (variables.tempo_restante <= 0) {
     handleTimerEnd();
+
     return;
   }
 
-  tempo_restante--;
-  const minutos = Math.floor(tempo_restante / 60);
-  const segundos = tempo_restante % 60;
+  variables.tempo_restante--;
+
+  const minutos = Math.floor(variables.tempo_restante / 60);
+  const segundos = variables.tempo_restante % 60;
+
   clock_timer.textContent = formatTime(minutos, segundos);
-};
+}
 
 const handleTimerEnd = () => {
-  if (!modo_pausa) {
-    clearInterval(timer_interval);
-    timer_ativo = false;
-    modo_pausa = true;
-    tempo_restante = minutos_pausa * 60;
-    clock_timer.textContent = formatTime(minutos_pausa, 0);
-    PauseTimeSound();
-  } else {
-    clearInterval(timer_interval);
-    timer_ativo = false;
-    modo_pausa = false;
-    pauseTimer();
+  if (!variables.modo_pausa) {
+    clearInterval(variables.timer_interval);
+
+    variables.timer_ativo = false;
+    variables.modo_pausa = true;
+    variables.tempo_restante = variables.minutos_pausa * 60;
+
+    clock_timer.textContent = formatTime(variables.minutos_pausa, 0);
+
+    pauseTimeSound().play();
+
+    return;
   }
-};
+
+  clearInterval(variables.timer_interval);
+
+  variables.timer_ativo = false;
+  variables.modo_pausa = false;
+
+  // Ao zerar minutos_pausa, retorna ao minutos_trabalho
+  variables.tempo_restante = variables.minutos_trabalho * 60;
+
+  clock_timer.textContent = formatTime(variables.minutos_trabalho, 0);
+
+  pauseTimer();
+}
 
 const pauseTimer = () => {
-  clearInterval(timer_interval);
-  timer_ativo = false;
-  clickSound();
-};
+  clearInterval(variables.timer_interval);
 
-button_config.addEventListener("click", toggleConfigPanel);
-button_save.addEventListener("click", validateAndSaveConfig);
-btn_pause.addEventListener("click", pauseTimer);
-btn_start.addEventListener("click", startTimer);
-btn_radio.addEventListener("click", radio);
-btn_pause_radio.addEventListener("click", pause);
-btn_pomodoro.addEventListener("click", function () {
-  defaultTimer("Pomodoro");
-});
-btn_long_pause.addEventListener("click", function () {
-  defaultTimer("LongPause");
-});
-btn_short_pause.addEventListener("click", function () {
-  defaultTimer("ShortPause");
-});
+  variables.timer_ativo = false;
 
-function radio() {
-  clickSound();
+  clickSound().play();
+}
+
+const radio = () => {
+  clickSound().play();
+
   btn_radio.disabled = true;
   btn_pause_radio.disabled = false;
   btn_radio.style.color = "var(--active-function-color)";
-  clickSound();
-  PlayWhiteNoise();
+
+  playWhiteNoise().play();
 }
 
-function pause() {
-  clickSound();
+const pause = () => {
+  clickSound().play();
+
   btn_radio.disabled = false;
   btn_pause_radio.disabled = true;
   btn_radio.style.color = "var(--cor-primaria)";
-  clickSound();
-  WhiteNoisePause();
+
+  whiteNoisePause().pause();
 }
 
-import StyleMode from "./modules/StyleMode.js";
-StyleMode();
-
-import { clickSound } from "./modules/SoundClick.js";
-import { PlayWhiteNoise } from "./modules/SoundClick.js";
-import { WhiteNoisePause } from "./modules/SoundClick.js";
-import { PauseTimeSound } from "./modules/SoundClick.js";
+button_config.addEventListener('click', toggleConfigPanel);
+button_save.addEventListener('click', validateAndSaveConfig);
+btn_pause.addEventListener('click', pauseTimer);
+btn_start.addEventListener('click', startTimer);
+btn_radio.addEventListener('click', radio);
+btn_pause_radio.addEventListener('click', pause);
+btn_pomodoro.addEventListener('click', () => defaultTimer("Pomodoro"));
+btn_long_pause.addEventListener('click', () => defaultTimer("LongPause"));
+btn_short_pause.addEventListener('click', () => defaultTimer("ShortPause"));

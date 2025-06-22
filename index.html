@@ -1,40 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
-<html lang="pt-br">
+<html lang="pt-BR">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            name="description"
-            content="Pomodorus é um site de gerenciamento de tempo baseado na técnica Pomodoro. Aumente sua produtividade com nosso timer simples e eficaz."
-        />
-        <meta
-            name="keywords"
-            content="Pomodorus,Pomodoro, timer, produtividade, gerenciamento de tempo, aplicativo"
-        />
-        <meta name="author" content="Pomodorus" />
-        <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Pomodorus - Time" />
-        <meta
-            property="og:description"
-            content="Pomodorus é um aplicativo de gerenciamento de tempo baseado na técnica Pomodoro. Aumente sua produtividade com nosso timer simples e eficaz."
-        />
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Pomodorus é um site de gerenciamento de tempo baseado na técnica Pomodoro. Aumente sua produtividade com nosso timer simples e eficaz"/>
+        <meta name="keywords" content="Pomodorus, Pomodoro, timer, produtividade, gerenciamento de tempo, aplicativo"/>
+        <meta name="author" content="Pomodorus"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Pomodorus - Time"/>
+        <meta property="og:description" content="Pomodorus é um aplicativo de gerenciamento de tempo baseado na técnica Pomodoro. Aumente sua produtividade com nosso timer simples e eficaz"/>
 
         <title>Pomodorus - Time</title>
 
-        <link
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="src/styles/style.css" />
-        <link rel="stylesheet" href="src/styles/reset-css.css" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+        <link rel="stylesheet" href="src/styles/style.css"/>
+        <link rel="stylesheet" href="src/styles/reset-css.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     </head>
 
     <body>
@@ -45,15 +27,12 @@
 
             <section class="container-menu">
                 <div class="button-style-mode">
-                    <span class="material-symbols-outlined sun"
-                        >light_mode</span
-                    >
-                    <span class="material-symbols-outlined moon"
-                        >dark_mode</span
-                    >
+                    <span class="material-symbols-outlined sun">light_mode</span>
+                    <span class="material-symbols-outlined moon">dark_mode</span>
                 </div>
+
                 <a href="https://github.com/devJunr/pomodorus">
-                    <i class="display-1 fa-brands fa-github"> </i>
+                    <i class="display-1 fa-brands fa-github"></i>
                 </a>
             </section>
         </header>
@@ -62,15 +41,9 @@
             <div class="container">
                 <section>
                     <div class="buttons">
-                        <button type="button" id="btn_pomodoro">
-                            Pomodoro
-                        </button>
-                        <button type="button" id="btn_short_pause">
-                            Pausa Curta
-                        </button>
-                        <button type="button" id="btn_long_pause">
-                            Pausa Longa
-                        </button>
+                        <button type="button" id="btn_pomodoro">Pomodoro</button>
+                        <button type="button" id="btn_short_pause">Pausa Curta</button>
+                        <button type="button" id="btn_long_pause">Pausa Longa</button>
                     </div>
                 </section>
 
@@ -87,7 +60,6 @@
                         <button type="button" id="btn_config">
                             <i class="fa-solid fa-gear"></i>
                         </button>
-
                         <button type="button" id="btn_radio">
                             <i class="fa-solid fa-radio"></i>
                         </button>
@@ -102,35 +74,19 @@
                 <h2>Configurações</h2>
 
                 <section class="configuracoes_opcoes">
-                    <hr style="margin: 5% 0" />
+                    <hr style="margin: 5% 0"/>
 
                     <section class="input_config">
                         <label for="minutos">Minutos de Trabalho: </label>
-                        <input
-                            value="15"
-                            id="minutos"
-                            type="number"
-                            min="15"
-                            max="99"
-                            placeholder="15"
-                        />
+                        <input value="15" id="minutos" type="number" min="15" max="99" placeholder="15"/>
                         <span class="error-message" id="error-minutos"></span>
+                        
                         <label for="minutos_pausa">Minutos de Descanso: </label>
-                        <input
-                            value="5"
-                            id="minutos_pausa"
-                            type="number"
-                            min="5"
-                            max="99"
-                            placeholder="5"
-                        />
-                        <span
-                            class="error-message"
-                            id="error-minutos-pausa"
-                        ></span>
+                        <input value="5" id="minutos_pausa" type="number" min="5" max="99" placeholder="5"/>
+                        <span class="error-message" id="error-minutos-pausa"></span>
                     </section>
 
-                    <hr style="margin: 10% 0" />
+                    <hr style="margin: 10% 0"/>
 
                     <button type="button" id="btn_save">Salvar</button>
                 </section>
@@ -142,18 +98,10 @@
 
             <ul>
                 <li>
-                    <a
-                        href="https://github.com/devjunr/pomodorus/graphs/contributors"
-                    >
-                        Contribuidores do Projeto
-                    </a>
+                    <a href="https://github.com/devjunr/pomodorus/graphs/contributors">Contribuidores do Projeto</a>
                 </li>
                 <li>
-                    <a
-                        href="https://pt.wikipedia.org/wiki/T%C3%A9cnica_pomodoro"
-                    >
-                        Técnica pomodoro - Wikipedia
-                    </a>
+                    <a href="https://pt.wikipedia.org/wiki/T%C3%A9cnica_pomodoro">Técnica pomodoro - Wikipedia</a>
                 </li>
             </ul>
         </footer>
