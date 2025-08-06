@@ -1,0 +1,63 @@
+name: '🤖 Gemini Code Generator'
+
+on:
+  issue_comment:
+    types:
+      - 'created'
+
+permissions:
+  contents: 'write'    # Permissão para escrever no repositório (criar branch, commitar)
+  pull-requests: 'write' # Permissão para criar Pull Requests
+  issues: 'write'
+
+jobs:
+  generate-code:
+    # Este job só roda se o comentário contiver o comando exato
+    if: contains(github.event.comment.body, '@gemini-cli /generate-code')
+    runs-on: 'ubuntu-latest'
+    timeout-minutes: 15
+
+    steps:
+      - name: 'Checkout repository'
+        uses: 'actions/checkout@v4'
+
+      - name: 'Run Gemini Code Generation'
+        uses: 'google-github-actions/run-gemini-cli@v0'
+        id: 'gemini_code_gen'
+        with:
+          gemini_api_key: '${{ secrets.GEMINI_API_KEY }}'
+          settings: |-
+            {
+              "maxSessionTurns": 25,
+              "coreTools": [
+                "run_shell_command(git checkout -b)",
+                "run_shell_command(git add)",
+                "run_shell_command(git commit -m)",
+                "run_shell_command(git push)",
+                "run_shell_command(gh pr create)",
+                "run_shell_command(ls -F)",
+                "run_shell_command(cat)",
+                "run_shell_command(echo)"
+              ]
+            }
+          prompt: |-
+            ## REGRA PRINCIPAL
+            VOCÊ DEVE RESPONDER E COMENTAR ESTRITAMENTE EM PORTUGUÊS DO BRASIL.
+
+            ## Papel
+            Você é um engenheiro de software especialista. Sua tarefa é ler a issue do GitHub, gerar o código necessário para implementar a funcionalidade ou corrigir o bug, e abrir um Pull Request com as suas alterações.
+
+            ## Passos
+            1.  **Analisar a Issue:** Leia o título e a descrição da issue atual: "${{ github.event.issue.title }}" e "${{ github.event.issue.body }}". Entenda completamente o que precisa ser feito.
+            2.  **Criar uma Nova Branch:** Crie uma nova branch para suas alterações. O nome da branch deve ser descritivo, como `feat/issue-${{ github.event.issue.number }}-descricao-curta`. Use: `git checkout -b NOME_DA_BRANCH`
+            3.  **Listar Arquivos (se necessário):** Use `ls -F src/js/modules` para ver os arquivos existentes e decidir se precisa criar um novo ou editar um existente.
+            4.  **Escrever o Código:** Escreva o código JavaScript, HTML ou CSS necessário. Use `echo "SEU CÓDIGO AQUI" > src/caminho/do/arquivo.js` para criar ou sobrescrever arquivos.
+            5.  **Adicionar e Commitar:** Adicione seus arquivos ao git com `git add .` e faça o commit com uma mensagem clara, como `git commit -m "feat: Implementa funcionalidade da issue #${{ github.event.issue.number }}"`.
+            6.  **Enviar a Branch:** Envie sua nova branch para o repositório com `git push origin NOME_DA_BRANCH`.
+            7.  **Criar o Pull Request:** Crie um Pull Request para que um humano possa revisar seu trabalho. Use: `gh pr create --title "Implementa Issue #${{ github.event.issue.number }}" --body "Este PR foi gerado por IA para resolver a issue #${{ github.event.issue.number }}. Por favor, revise as alterações."`
+            8.  **Comentar na Issue:** Volte para a issue original e deixe um comentário informando que você criou um PR, incluindo o link para ele.
+
+            ## Diretrizes
+            - Execute um passo de cada vez.
+            - Pense de forma lógica sobre quais arquivos editar. Para o projeto "pomodorus", as lógicas principais estão em `src/js/script.js` e `src/js/modules/`.
+            - Seja cuidadoso e preciso.
