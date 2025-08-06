@@ -35,22 +35,22 @@ jobs:
       github.event_name == 'issues' ||
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'issue_comment' &&
-       contains(github.event.comment.body, '@gemini-cli /triage') &&
-       (github.event.comment.author_association == 'OWNER' ||
-        github.event.comment.author_association == 'MEMBER' ||
-        github.event.comment.author_association == 'COLLABORATOR'))
+        contains(github.event.comment.body, '@gemini-cli /triage') &&
+        (github.event.comment.author_association == 'OWNER' ||
+         github.event.comment.author_association == 'MEMBER' ||
+         github.event.comment.author_association == 'COLLABORATOR'))
     timeout-minutes: 5
     runs-on: 'ubuntu-latest'
 
     steps:
       - name: 'Checkout repository'
-        uses: 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' # ratchet:actions/checkout@v4
+        uses: 'actions/checkout@v4'
 
       - name: 'Generate GitHub App Token'
         id: 'generate_token'
         if: |-
           ${{ vars.APP_ID }}
-        uses: 'actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e' # ratchet:actions/create-github-app-token@v2
+        uses: 'actions/create-github-app-token@v1'
         with:
           app-id: '${{ vars.APP_ID }}'
           private-key: '${{ secrets.APP_PRIVATE_KEY }}'
@@ -78,7 +78,8 @@ jobs:
               "maxSessionTurns": 25,
               "coreTools": [
                 "run_shell_command(gh label list)",
-                "run_shell_command(gh issue edit)"
+                "run_shell_command(gh issue edit)",
+                "run_shell_command(gh issue comment)"
               ],
               "telemetry": {
                 "enabled": false,
@@ -86,38 +87,31 @@ jobs:
               }
             }
           prompt: |-
-            ## Role
+            ## REGRA PRINCIPAL
+            VOCÊ DEVE RESPONDER E COMENTAR ESTRITAMENTE EM PORTUGUÊS DO BRASIL.
 
-            You are an issue triage assistant. Analyze the current GitHub issue
-            and apply the most appropriate existing labels. Use the available
-            tools to gather information; do not ask for information to be
-            provided.
+            ## Papel
+            Você é um assistente especialista em triagem de issues no GitHub. Seu objetivo é analisar a issue atual, escrever um comentário útil em português, e aplicar as etiquetas (labels) mais apropriadas.
 
-            ## Steps
+            ## Passos
+            1. Execute `gh label list` para obter todas as labels disponíveis.
+            2. Revise o título e o corpo da issue usando as variáveis de ambiente: "${ISSUE_TITLE}" e "${ISSUE_BODY}".
+            3. Baseado na sua análise, **escreva um comentário conciso e prestativo em Português do Brasil.** O comentário deve resumir a issue e mencionar as labels que você está prestes a aplicar.
+            4. Publique seu comentário na issue usando o comando: `gh issue comment "${ISSUE_NUMBER}" --body "Seu comentário em português aqui"`
+            5. Selecione as labels mais relevantes da lista que você recuperou.
+            6. Aplique as labels selecionadas na issue usando: `gh issue edit "${ISSUE_NUMBER}" --add-label "label1,label2"`
+            7. Se a label "status/needs-triage" estiver presente, remova-a usando: `gh issue edit "${ISSUE_NUMBER}" --remove-label "status/needs-triage"`
 
-            1. Run: `gh label list` to get all available labels.
-            2. Review the issue title and body provided in the environment
-               variables: "${ISSUE_TITLE}" and "${ISSUE_BODY}".
-            3. Select the most relevant labels from the existing labels. If
-               available, set labels that follow the `kind/*`, `area/*`, and
-               `priority/*` patterns.
-            4. Apply the selected labels to this issue using:
-               `gh issue edit "${ISSUE_NUMBER}" --add-label "label1,label2"`
-            5. If the "status/needs-triage" label is present, remove it using:
-               `gh issue edit "${ISSUE_NUMBER}" --remove-label "status/needs-triage"`
-
-            ## Guidelines
-
-            - Only use labels that already exist in the repository
-            - Do not add comments or modify the issue content
-            - Triage only the current issue
-            - Assign all applicable labels based on the issue content
-            - Reference all shell variables as "${VAR}" (with quotes and braces)
+            ## Diretrizes
+            - O seu comentário final DEVE estar em Português do Brasil.
+            - Use apenas labels que já existem no repositório.
+            - Faça a triagem e comente apenas na issue atual.
+            - Referencie todas as variáveis de ambiente como "${VAR}" (com aspas e chaves).
 
       - name: 'Post Issue Triage Failure Comment'
         if: |-
           ${{ failure() && steps.gemini_issue_triage.outcome == 'failure' }}
-        uses: 'actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea'
+        uses: 'actions/github-script@v7'
         with:
           github-token: '${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}'
           script: |-
@@ -125,5 +119,5 @@ jobs:
               owner: '${{ github.repository }}'.split('/')[0],
               repo: '${{ github.repository }}'.split('/')[1],
               issue_number: '${{ github.event.issue.number }}',
-              body: 'There is a problem with the Gemini CLI issue triaging. Please check the [action logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.'
+              body: 'Ocorreu um problema com a triagem de issues do Gemini CLI. Por favor, verifique os [logs da action](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) para mais detalhes.'
             })
