@@ -62,7 +62,7 @@ Este projeto está sob a licença MIT License - Veja o arquivo [LICENSE.md](http
 
 - [Som de ruído marrom - Deep Sleep Brown Noise - Bits & Noise](https://open.spotify.com/intl-pt/track/0B97qFqGUnLvV2tXZpXfxf?si=1e3837d3fd93454f)
 
-- [FavIcon](https://www.flaticon.com/free-icon/pomodoro-technique_14991682?term=pomodoro&page=1&position=5&origin=search&related_id=14991682)
+- [Favicon - Pomodoro Technique icon](https://www.flaticon.com/free-icon/pomodoro-technique_14991682?term=pomodoro&page=1&position=5&origin=search&related_id=14991682)
 ---
 ## 🎁 Expressões de gratidão
 Agradeço a todos que estão colaborando com o projeto, e enviando suas PR.
